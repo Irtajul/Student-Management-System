@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Md. Irtajul Akhter Khan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0d1a1b; font-family: 'Inter', sans-serif; color: white; overflow-x: hidden; }
+
+        @keyframes laserMove {
+            0% { left: -150%; }
+            100% { left: 400%; }
+        }
+
+        /* --- Header (Logo, Menu, Info Layout) --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%; z-index: 9999;
+            background: rgba(13, 26, 27, 0.95);
+            border-bottom: 1px solid #D6120C;
+            box-shadow: 0 5px 20px rgba(214, 18, 12, 0.6);
+        }
+        header::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 25%; height: 2px;
+            background: linear-gradient(90deg, transparent, #D6120C, #ffffff, #D6120C, transparent);
+            animation: laserMove 5s linear infinite;
+        }
+
+        .main-navbar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 50px; max-width: 100%; 
+        }
+
+        .nav-left img { height: 50px; }
+
+        .nav-middle .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-middle .nav-links li a { color: white; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .nav-middle .nav-links li a:hover { color: #D6120C; }
+
+        /* Dropdown Fix */
+        .dropdown { position: relative; }
+        .dropdown-content { 
+            display: none; position: absolute; background: #1A3A3D; 
+            min-width: 160px; padding: 5px 0; border: 1px solid #D6120C; top: 100%; 
+            border-radius: 0 0 8px 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            z-index: 10001;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { color: white !important; display: block; padding: 12px 20px; text-decoration: none; border-bottom: 1px solid rgba(214, 18, 12, 0.1); }
+        .dropdown-content a:hover { background: #ffffff; color: #D6120C !important; padding-left: 25px; }
+
+        .nav-right-info { display: flex; gap: 20px; align-items: center; }
+        .nav-right-info a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .nav-right-info a i { color: #D6120C; }
+        .nav-right-info a:hover { color: #D6120C; }
+
+        /* --- Hero Slider (800px) --- */
+        .hero-slider-container { width: 100%; height: 800px; overflow: hidden; position: relative; }
+        .slider { display: flex; width: 300%; height: 100%; transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1); }
+        .slide { width: 33.333%; height: 100%; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; position: relative; }
+        .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; }
+        .hero-content h1 {
+            font-size: 5.5rem; font-weight: 900; text-transform: uppercase;
+            text-shadow: -1.5px -1.5px 0 #D6120C, 1.5px -1.5px 0 #D6120C, -1.5px 1.5px 0 #D6120C, 1.5px 1.5px 0 #D6120C, 0px 10px 30px rgba(0,0,0,0.8); 
+        }
+        .hero-content p { letter-spacing: 8px; font-weight: 600; color: #cfd8dc; }
+
+        /* --- About Section (Restored All Info & Animations) --- */
+        .about-page-wrapper { background-color: #0d1a1b; padding-bottom: 100px; }
+        .about-main-card {
+            max-width: 1100px; margin: -100px auto 0;
+            background: #1A3A3D; border-radius: 25px; padding: 60px;
+            display: flex; align-items: flex-start; gap: 60px;
+            position: relative; z-index: 1000;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(214, 18, 12, 0.2);
+            border: 1px solid rgba(214, 18, 12, 0.3);
+            transition: 0.5s;
+            animation: aboutFadeIn 1.2s forwards;
+        }
+        @keyframes aboutFadeIn { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: translateY(0); } }
+        .about-main-card:hover { transform: translateY(-15px); border-color: #D6120C; box-shadow: 0 25px 70px rgba(0,0,0,1), 0 0 35px rgba(214, 18, 12, 0.5); }
+
+        .about-img-box { flex: 1; }
+        .profile-frame { width: 100%; max-width: 380px; border-radius: 20px; overflow: hidden; border: 5px solid #142d2f; transition: 0.5s; }
+        .profile-frame:hover { border-color: #D6120C; }
+        .profile-frame img { width: 100%; display: block; transition: 0.5s; }
+        .profile-frame:hover img { transform: scale(1.1); }
+        
+        .photo-bottom-preview { margin-top: 30px; text-align: center; }
+        .figma-frame { width: 100%; max-width: 380px; background: #142d2f; padding: 12px; border-radius: 15px; border: 1px solid rgba(214, 18, 12, 0.3); transition: 0.5s; }
+        .figma-frame:hover { border-color: #D6120C; transform: translateY(-10px); }
+        .figma-frame img { width: 100%; border-radius: 8px; }
+        .preview-label { display: block; color: #D6120C; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-top: 12px; letter-spacing: 2px; }
+
+        .about-info-content { flex: 1.6; color: #fff; }
+        .about-info-content h2 {
+            font-size: 3.2rem; margin-bottom: 10px; font-weight: 900; text-transform: uppercase;
+            text-shadow: -2px -2px 0 #D6120C, 2px -2px 0 #D6120C, -2px 2px 0 #D6120C, 2px 2px 0 #D6120C;
+        }
+        .about-info-content h3:first-of-type { color: #b0bec5; margin-bottom: 25px; font-size: 1.3rem; display: inline-block; padding-bottom: 8px; border-bottom: 3px solid #D6120C; }
+        
+        .expect-list { list-style: none; margin: 20px 0; }
+        .expect-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: #cfd8dc; font-size: 1.1rem; }
+        .check-box { background: #D6120C; color: #fff; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+        
+        .specialties-title { color: #fff; font-size: 1.6rem; margin: 30px 0 20px; display: inline-block; border-bottom: 3px solid #D6120C; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .info-box { border: 1px solid #D6120C; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; transition: 0.4s; }
+        .info-box:hover { background: #D6120C; transform: translateX(10px); }
+
+        /* --- Footer (Restored Text Hover) --- */
+        .site-footer {
+            background: #0d1a1b; padding: 40px 0; text-align: center;
+            border-top: 1px solid #D6120C; position: relative; overflow: hidden;
+            box-shadow: 0 -5px 20px rgba(214, 18, 12, 0.6);
+        }
+        .site-footer::after {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 25%; height: 2px;
+            background: linear-gradient(90deg, transparent, #D6120C, #ffffff, #D6120C, transparent);
+            animation: laserMove 5s linear infinite;
+        }
+        .footer-content p { 
+            font-weight: 600; color: white; display: inline-block;
+            cursor: pointer; transition: 0.4s ease;
+        }
+        .footer-content p:hover { 
+            color: #D6120C; transform: scale(1.05); 
+            text-shadow: 0 0 10px rgba(214, 18, 12, 0.5);
+        }
+
+        @media (max-width: 1100px) {
+            .main-navbar { flex-direction: column; gap: 15px; }
+            .hero-content h1 { font-size: 3rem; }
+            .about-main-card { flex-direction: column; padding: 30px; margin-top: -50px; gap: 40px; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="main-navbar">
+            <div class="nav-left">
+                <a href="index.html"><img src="img/freedomeit logo.png" alt="Logo"></a>
+            </div>
+            <div class="nav-middle">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Team <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Team 1</a><a href="#">Team 2</a><a href="#">Team 3</a><a href="#">Team 4</a>
+                        </div>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html" style="color: #D6120C; font-weight: 900;">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="nav-right-info">
+                <a href="mailto:bipu@fit-batch15.com"><i class="fas fa-envelope"></i> bipu@fit-batch15.com</a>
+                <a href="tel:+8801700000000"><i class="fas fa-phone-alt"></i> +880 1700 000000</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero-slider-container">
+        <div class="slider" id="aboutSlider">
+            <div class="slide" style="background-image: url('https://img.freepik.com/free-photo/html-css-collage-concept-with-person_23-2150062008.jpg?w=1480');">
+                <div class="hero-content"><h1>ABOUT ME</h1><p>CRAFTING HIGH-END DIGITAL EXPERIENCES</p></div>
+            </div>
+            <div class="slide" style="background-image: url('https://bairesdev.mo.cloudinary.net/blog/2023/09/How-Many-Web-Developers-in-the-World-1.jpg?tx=w_1920,q_auto');">
+                <div class="hero-content"><h1>MY MISSION</h1><p>PIXEL PERFECT SOLUTIONS</p></div>
+            </div>
+            <div class="slide" style="background-image: url('https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010125.jpg?w=1480');">
+                <div class="hero-content"><h1>MY EXPERTISE</h1><p>SCALABLE & MODERN ARCHITECTURE</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-page-wrapper">
+        <section class="about-main-card">
+            <div class="about-img-box">
+                <div class="profile-frame">
+                    <img src="img/Irtajul Photo 1.jpg" alt="Md. Irtajul Akhter Khan">
+                </div>
+                <div class="photo-bottom-preview">
+                    <div class="figma-frame">
+                        <img src="https://img.freepik.com/free-vector/user-interface-design-concept-landing-page_52683-76331.jpg" alt="Figma Design Preview">
+                    </div>
+                    <span class="preview-label">Creative Figma Concept</span>
+                </div>
+            </div>
+
+            <div class="about-info-content">
+                <h2>Md. Irtajul Akhter Khan</h2>
+                <h3>Creative Web Designer & Developer | WordPress Professional</h3>
+                <p>Hi, I’m Md. Irtajul Akhter Khan, a professional web designer and developer with 4+ years of experience. I turn ideas into clean, responsive, and user-friendly websites that truly represent your brand.</p>
+                
+                <p style="color: #fff; font-weight: 700; margin-top: 15px; margin-bottom: 10px;">What you can expect:</p>
+                <ul class="expect-list">
+                    <li><div class="check-box"><i class="fas fa-check"></i></div> Clean & modern design</li>
+                    <li><div class="check-box"><i class="fas fa-check"></i></div> Fast loading performance</li>
+                    <li><div class="check-box"><i class="fas fa-check"></i></div> Smooth user experience</li>
+                    <li><div class="check-box"><i class="fas fa-check"></i></div> A strong foundation for business growth</li>
+                </ul>
+
+                <h3 class="specialties-title">My Specialties:</h3>
+                <div class="info-grid">
+                    <div class="info-box"><i class="fab fa-wordpress"></i> <span>WordPress Development</span></div>
+                    <div class="info-box"><i class="fas fa-layer-group"></i> <span>UI/UX & Web Design</span></div>
+                    <div class="info-box"><i class="fas fa-mobile-alt"></i> <span>Responsive Websites</span></div>
+                    <div class="info-box"><i class="fab fa-html5"></i> <span>HTML5 & CSS3</span></div>
+                    <div class="info-box"><i class="fab fa-js"></i> <span>jQuery & JavaScript</span></div>
+                    <div class="info-box"><i class="fas fa-search"></i> <span>SEO Solutions</span></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 All Rights Reserved | Developed by Bipu</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let abtIdx = 0;
+            const abtSliderObj = document.getElementById('aboutSlider');
+            function autoAbtSlider() {
+                abtIdx = (abtIdx + 1) % 3;
+                abtSliderObj.style.transform = `translateX(-${(abtIdx * 100) / 3}%)`;
+            }
+            setInterval(autoAbtSlider, 4500); 
+        });
+    </script>
+</body>
+</html>

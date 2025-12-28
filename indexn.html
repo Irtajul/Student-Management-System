@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data Management System (FIT Batch 15)</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* বিপু, এখানে আমি সব স্টাইল ইনলাইন করে দিয়েছি যাতে অন্য ফাইল ডিস্টার্ব না করে */
+        :root {
+            --primary-red: #D6120C;
+            --brand-teal: #1A3A3D;
+            --dark-bg: #0d1a1b;
+        }
+
+        body { 
+            margin: 0; 
+            padding: 0;
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--dark-bg); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Header & Laser --- */
+        header {
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 10000;
+            background: #0d1a1b !important;
+            border-bottom: 2px solid var(--primary-red) !important;
+            /* নিচের শ্যাডোটি এখানে */
+            box-shadow: 0 4px 20px rgba(214, 18, 12, 0.5);
+        }
+
+        .main-navbar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 50px; height: 80px; 
+        }
+
+        .nav-logo { height: 50px; }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+        .nav-links li { position: relative; }
+        .nav-links li a { 
+        color: white !important; 
+        font-weight: 700; 
+        text-decoration: none !important; /* আন্ডারলাইন রিমুভ */
+        font-size: 16px; /* লেখা বড় করা হলো */
+        text-transform: uppercase; 
+        transition: 0.3s ease;
+        padding: 10px 0;
+        position: relative;
+        }
+
+        .nav-links li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary-red);
+        transition: width 0.3s ease;
+        }
+        .nav-links li a:hover::after {
+        width: 100%; /* মাউস নিলে নিচ দিয়ে লাল লাইন আসবে */
+        }
+
+        .nav-links li a:hover { 
+        color: var(--primary-red) !important; 
+        }
+
+        /* Dropdown */
+        .dropdown-content { 
+            display: none; position: absolute; background: var(--brand-teal); 
+            min-width: 160px; top: 100%; left: 0; border: 1px solid var(--primary-red);
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a {
+            font-size: 15px; 
+            text-decoration: none !important; 
+            color: white; padding: 12px 20px; text-decoration: none; 
+            display: block; border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+
+        .nav-right { display: flex; gap: 20px; align-items: center; }
+        .contact-info { 
+        color: white !important; 
+        text-decoration: none; 
+        font-size: 13px; 
+        font-weight: 600; 
+        display: flex; 
+        align-items: center; 
+        gap: 8px;
+        transition: 0.3s ease; 
+        text-decoration: none !important;
+        font-size: 15px;
+        }
+
+        .contact-info:hover { 
+        color: var(--primary-red) !important; /* হোভার করলে লাল হবে */
+        }
+        .contact-info:hover i {
+        color: white !important; /* আইকন তখন সাদা হয়ে যাবে */
+        }
+
+        /* Laser Light */
+        .laser-container { position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; overflow: hidden; }
+        .laser-line {
+            width: 30%; height: 100%;
+            background: linear-gradient(90deg, transparent, var(--primary-red), #fff, var(--primary-red), transparent);
+            animation: laserMove 4s linear infinite;
+        }
+        @keyframes laserMove { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
+
+        /* --- Hero Slider (Fixed 800px) --- */
+        .hero-slider-container { width: 100%; height: 800px; overflow: hidden; position: relative; }
+        .slider { display: flex; width: 300%; height: 100%; transition: transform 1s ease-in-out; }
+        .slide { 
+            width: 33.333%; height: 100%; background-size: cover; background-position: center; 
+            display: flex; align-items: center; justify-content: center; position: relative; 
+        }
+        .slide::before { 
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; 
+            height: 100%; background: rgba(0,0,0,0.65); 
+        }
+
+        .hero-content { position: relative; z-index: 5; text-align: center; max-width: 900px; padding: 0 20px; }
+        .hero-content h1 { 
+            font-size: 4.5rem; font-weight: 900; color: white; line-height: 1.1;
+            text-shadow: 4px 4px 0 var(--primary-red); margin-bottom: 20px;
+        }
+        .hero-content p { font-size: 1.1rem; letter-spacing: 4px; color: #ddd; margin-bottom: 35px; text-transform: uppercase; }
+        .cta-button { 
+            padding: 16px 45px; background: var(--primary-red); color: white; 
+            text-decoration: none; font-weight: 800; border-radius: 50px; 
+            display: inline-block; transition: 0.3s;
+        }
+        .cta-button:hover { background: white; color: var(--primary-red); transform: translateY(-3px); }
+
+
+
+        /* --- Footer Premium Styles --- */
+    .site-footer {
+        background: #091314 !important; 
+        padding: 60px 0 30px 0 !important;
+        text-align: center; 
+        color: #ccc;
+        position: relative;
+        border-top: 2px solid var(--primary-red) !important;
+        margin-top: 50px;
+        /* উপরের দিকে শ্যাডোটি এখানে */
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5), 0 -4px 15px rgba(214, 18, 12, 0.5);
+    }
+
+    /* Footer Laser Light (উপরের দিকে থাকবে) */
+    .footer-laser {
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        overflow: hidden;
+    }
+
+    .footer-laser-line {
+        width: 30%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, var(--primary-red), #fff, var(--primary-red), transparent);
+        animation: laserMove 4s linear infinite reverse; /* উল্টো দিকে দৌড়াবে */
+    }
+
+    .footer-content p {
+        margin: 5px 0;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .footer-content p:first-child {
+        color: white;
+        font-size: 1.1rem;
+    }
+
+    .footer-content p:nth-child(2) {
+        color: var(--primary-red);
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .footer-links {
+        margin-top: 20px;
+    }
+
+    .footer-links a {
+        color: #888 !important;
+        text-decoration: none !important;
+        font-weight: 700;
+        margin: 0 15px;
+        transition: 0.3s;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .footer-links a:hover {
+        color: var(--primary-red) !important;
+        text-shadow: 0 0 10px rgba(214, 18, 12, 0.5);
+    }
+
+    /* Developed by Devirtajul পার্টটাকে একটু হাইলাইট করলাম */
+    .dev-name {
+        color: var(--primary-red);
+        font-weight: 900;
+    }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="main-navbar">
+            <div class="nav-left">
+                <a href="#" onclick="refreshData()"><img src="https://i.ibb.co.com/dw55Xj1T/logo.png" alt="Logo" class="nav-logo"></a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#" onclick="refreshData()">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Team <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="filterByTeam(1)">Team 1</a>
+                        <a href="#" onclick="filterByTeam(2)">Team 2</a>
+                        <a href="#" onclick="filterByTeam(3)">Team 3</a>
+                        <a href="#" onclick="filterByTeam(4)">Team 4</a>
+                    </div>
+                </li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <a href="tel:+880123456789" class="contact-info"><i class="fas fa-phone"></i> <span>+880 1234 56789</span></a>
+                <a href="mailto:contact@fit.com" class="contact-info"><i class="fas fa-envelope"></i> <span>contact@fit.com</span></a>
+            </div>
+        </nav>
+        <div class="laser-container"><div class="laser-line"></div></div>
+    </header>
+
+    <div class="hero-slider-container">
+        <div class="slider" id="mainSlider">
+            <div class="slide" style="background-image: url('https://img.freepik.com/free-photo/html-css-collage-concept-with-person_23-2150062008.jpg?w=1480');">
+                <div class="hero-content">
+                    <h1>FREEDOM IT<br>INSTITUTIONS</h1>
+                    <p>WEB DESIGN & DEVELOPMENT BATCH 15</p>
+                    <a href="#studentList" class="cta-button">OUR MEMBERS</a>
+                </div>
+            </div>
+
+            <div class="slide" style="background-image: url('https://bairesdev.mo.cloudinary.net/blog/2023/09/How-Many-Web-Developers-in-the-World-1.jpg?tx=w_1920,q_auto');">
+                <div class="hero-content">
+                    <h1>MEET THE FIT WDD<br>15 BATCH TALENT</h1>
+                    <p>EXPLORE THE ACHIEVEMENTS AND PORTFOLIOS OF OUR STUDENTS</p>
+                    <a href="#studentList" class="cta-button">View Profiles</a>
+                </div>
+            </div>
+            
+            <div class="slide" style="background-image: url('https://img.freepik.com/free-photo/programmer-night_23-2151948231.jpg?w=1480');">
+                <div class="hero-content">
+                    <h1>STUDENTS<br>PROFILES</h1>
+                    <p>QUICKLY SEARCH OR MANAGE BATCH 15 STUDENT DIRECTORY</p>
+                    <a href="#studentList" class="cta-button">Manage Data</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-laser">
+            <div class="footer-laser-line"></div>
+        </div>
+
+        <div class="footer-content">
+            <p>&copy; 2025 All Rights Reserved | Developed by <span class="dev-name">Devirtajul</span></p>
+            <p>STUDENT DATA MANAGEMENT SYSTEM</p>
+            
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#privacy">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        setInterval(() => {
+            const slider = document.getElementById('mainSlider');
+            if(slider) {
+                slideIndex = (slideIndex + 1) % 3;
+                slider.style.transform = `translateX(-${slideIndex * 33.333}%)`;
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
